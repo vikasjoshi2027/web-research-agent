@@ -1,13 +1,15 @@
-﻿title: web-research-agent
-description: Searches the web for any topic and synthesizes a structured research report using LangGraph and Tavily Search.
+﻿title: autonomous-deep-research-agent
+description: Autonomous multi-step deep research agent using LangGraph cyclic reflection, dynamic gap-filling, and automated citation fact-checking.
 author: Vikas Joshi
 email: vikasjoshi.2027@gmail.com
 language: python
 framework: langgraph
 tags:
-  - research
-  - web-search
-  - rag
+  - deep-research
+  - autonomous-agents
   - langgraph
-  - ai-agents
-industry: general
+  - fact-checking
+  - citation-verification
+  - tavily-search
+  - rag
+industry: artificial-intelligence
