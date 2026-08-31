@@ -1,0 +1,13 @@
+﻿title: web-research-agent
+description: Searches the web for any topic and synthesizes a structured research report using LangGraph and Tavily Search.
+author: Vikas Joshi
+email: vikasjoshi.2027@gmail.com
+language: python
+framework: langgraph
+tags:
+  - research
+  - web-search
+  - rag
+  - langgraph
+  - ai-agents
+industry: general
