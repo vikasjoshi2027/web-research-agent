@@ -1,14 +1,12 @@
-﻿# 🌐 Autonomous Deep Research Agent
+﻿# Autonomous Deep Research Agent
 
-An advanced, production-grade autonomous research agent built with **LangGraph**, **LangChain**, and **Tavily Search**, featuring a modern **Streamlit Web UI**.
+An autonomous research system built with LangGraph, LangChain, and Tavily Search. The agent decomposes user research queries into targeted sub-queries, performs recursive web investigations with self-reflection and gap analysis, and executes automated citation verification to eliminate factual hallucinations.
 
-The system autonomously decomposes research topics into multi-angle queries, conducts iterative web investigations with self-reflection, and executes a rigorous **Citation & Fact-Checking Audit** to ensure zero hallucinations.
-
-**Author**: Vikas Joshi ([vikasjoshi.2027@gmail.com](mailto:vikasjoshi.2027@gmail.com))
+Author: Vikas Joshi (vikasjoshi.2027@gmail.com)
 
 ---
 
-## 🏗️ Agentic Architecture & Graph Workflow
+## Architecture & Workflow
 
 ```mermaid
 flowchart TD
@@ -16,7 +14,7 @@ flowchart TD
     Decompose --> Search[2. Multi-Source Web Search]
     Search --> Evaluate[3. Reflection & Gap Analysis]
     
-    Evaluate -- "Gaps Found (iteration < max)" --> FollowUp[Generate Follow-Up Queries]
+    Evaluate -- "Information Gaps Found (Iteration < Max Depth)" --> FollowUp[Generate Follow-Up Queries]
     FollowUp --> Search
     
     Evaluate -- "Sufficient Evidence" --> Synthesize[4. Structured Draft Synthesis]
@@ -26,36 +24,37 @@ flowchart TD
 
 ---
 
-## ⚡ Key Technical Innovations
+## Key Features & Capabilities
 
-1. **Autonomous Query Decomposition**: Breaks complex, ambiguous topics into multiple specialized sub-queries (background, technical breakthroughs, limitations).
-2. **Cyclic Reflection & Gap Analysis (Self-Correction)**: The evaluator node audits retrieved evidence and dynamically triggers targeted follow-up searches if information gaps exist.
-3. **URL Deduplication**: Automatically aggregates and deduplicates search findings across search cycles.
-4. **Citation & Fact-Checking Verifier Node**: Cross-references every inline claim `[X]` against raw source snippets to eliminate LLM hallucinations.
-5. **Streamlit Web Dashboard**: Real-time progress stepper, interactive source cards, model selector, and one-click Markdown export.
+- **Autonomous Query Decomposition**: Analyzes ambiguous or broad topics and extracts targeted sub-queries addressing background, technical breakthroughs, and limitations.
+- **Recursive Gap Analysis & Self-Correction**: An evaluation node audits retrieved evidence and dynamically triggers follow-up searches if critical information gaps exist.
+- **URL Deduplication**: Automatically aggregates and deduplicates search findings across search iterations.
+- **Citation Verification Node**: Cross-references claims against raw retrieved source content to ensure factual fidelity and prevent hallucinations.
+- **Dual Interface**: Full support for headless CLI execution and an interactive Streamlit web dashboard.
 
 ---
 
-## 🚀 Quick Start
+## Installation & Setup
 
-### 1. Prerequisites
-- Python 3.10+
-- [OpenAI API Key](https://platform.openai.com/api-keys)
-- [Tavily Search API Key](https://app.tavily.com) (Free tier available)
+### Prerequisites
+- Python 3.10 or higher
+- OpenAI API Key
+- Tavily Search API Key
 
-### 2. Installation
+### 1. Clone Repository & Install Dependencies
 ```bash
 git clone <your-repo-url>
 cd web-research-agent
 pip install -r requirements.txt
 ```
 
-### 3. Configure API Keys
-Copy `.env.example` to `.env`:
+### 2. Configure Environment Variables
+Copy the template configuration file to `.env`:
 ```bash
 cp .env.example .env
 ```
-Add your keys:
+
+Configure your API credentials in `.env`:
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
 TAVILY_API_KEY=your_tavily_api_key_here
@@ -64,54 +63,57 @@ OPENAI_MODEL=gpt-4o-mini
 
 ---
 
-## 🖥️ Running the Application
+## Usage
 
-### Option A: Launch Interactive Web UI (Streamlit)
+### Option A: Streamlit Web Dashboard
+Launch the interactive web dashboard:
 ```bash
 streamlit run app.py
 ```
-*Opens an interactive browser dashboard with visual progress tracking, topic chips, source previews, and report downloads.*
 
-### Option B: Run via Command-Line Interface (CLI)
+### Option B: Command-Line Interface (CLI)
+Execute research tasks directly from the terminal:
+
 ```bash
-# Run default investigation
+# Run with default query
 python agent.py
 
-# Run custom topic with 2 reflection cycles
+# Run with custom query and iteration depth
 python agent.py --query "State of multi-agent orchestration architectures in 2026" --max-iterations 2
 ```
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 web-research-agent/
-├── app.py              # Streamlit Web UI with real-time stepper & export
-├── agent.py            # Main LangGraph cyclic state graph with 5 agentic nodes
+├── app.py              # Streamlit web dashboard
+├── agent.py            # LangGraph cyclic state graph and core execution engine
 ├── requirements.txt    # Project dependencies
-├── metadata.yaml       # Project configuration, tags, and author info
+├── metadata.yaml       # Project configuration and metadata
 ├── .env.example        # Environment variable template
 ├── .gitignore          # Git ignore rules
 ├── LICENSE             # MIT License
-└── README.md           # Documentation & Architecture
+└── README.md           # Technical documentation
 ```
 
 ---
 
-## 🎯 Interview Highlights (Why This Project Stands Out)
+## Technical Overview
 
-- **Why LangGraph?** Leverages StateGraph to manage state across cyclic evaluation loops and conditional routing edges.
-- **Hallucination Prevention**: Includes a dedicated adversarial verification node for source-claim alignment.
-- **Bounded Recursion**: Uses `max_iterations` guards to guarantee deterministic termination and cost control.
-- **Full-Stack AI**: Complete with both headless CLI execution and an interactive Streamlit UI.
+- **StateGraph Architecture**: Built with LangGraph StateGraph to coordinate cyclical evaluation loops, state persistence, and conditional transitions.
+- **Bounded Recursion**: Configurable recursion guards (`max_iterations`) ensure deterministic termination and cost control.
+- **Source Verification**: Adversarial audit step validates that cited claims strictly correspond to source snippets.
 
 ---
 
-## 👤 Author
+## Author
 
-- **Vikas Joshi** ([vikasjoshi.2027@gmail.com](mailto:vikasjoshi.2027@gmail.com))
+- **Vikas Joshi** (vikasjoshi.2027@gmail.com)
 
-## 📄 License
+---
 
-This project is licensed under the [MIT License](LICENSE).
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
